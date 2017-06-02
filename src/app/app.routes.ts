@@ -1,8 +1,13 @@
-import { ModuleWithProviders } from '@angular/core';
+import { ModuleWithProviders, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { FeedComponent } from './feeds/feed/feed.component';
 import { UserComponent } from './user/user.component';
+
+@Component({
+  template : ' '
+})
+export class NoOpComponent {}
 
 const feedRoutes = [{
   path: ':page',
@@ -10,6 +15,10 @@ const feedRoutes = [{
 }];
 
 const routes: Routes = [
+  {
+    path: 'shell',
+    component: NoOpComponent
+  },
   {path: '', redirectTo: 'news/1', pathMatch: 'full'},
   {
     path: 'news',

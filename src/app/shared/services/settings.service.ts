@@ -2,6 +2,13 @@ import { Injectable } from '@angular/core';
 
 import { Settings } from '../models/settings';
 
+if (typeof localStorage === 'undefined') {
+  var localStorage = {
+    getItem: (key: string) => { return null },
+    setItem: (key: string, value: any) => {}
+  }
+}
+
 @Injectable()
 export class SettingsService {
   settings: Settings = {

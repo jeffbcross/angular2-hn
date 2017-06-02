@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { routing } from './app.routes';
+import { routing, NoOpComponent } from './app.routes';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -15,10 +15,13 @@ import { PipesModule } from "app/shared/pipes/pipes.module";
   declarations: [
     AppComponent,
     FeedComponent,
-    ItemComponent
+    ItemComponent,
+    NoOpComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({
+      appId: 'hn'
+    }),
     routing,
     ServicesModule.forRoot(),
     CoreModule,

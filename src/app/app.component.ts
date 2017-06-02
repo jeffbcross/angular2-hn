@@ -22,7 +22,7 @@ export class AppComponent {
   ) {
     this.settings = this._settingsService.settings;
     this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
+      if (event instanceof NavigationEnd && typeof ga !== 'undefined') {
         ga('set', 'page', event.urlAfterRedirects);
         ga('send', 'pageview');
       }
