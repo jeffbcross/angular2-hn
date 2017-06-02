@@ -1,6 +1,7 @@
 const path = require('path');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
@@ -206,6 +207,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       "template": "./src/index.html",
       "filename": "./index.html",
+      inlineSource: 'inline.*.(js)$',
       "hash": false,
       "inject": true,
       "compile": true,
@@ -230,11 +232,12 @@ module.exports = {
             return 0;
         }
     }
-    }),
+  }),
+    new HtmlWebpackInlineSourcePlugin(),
     new PreloadWebpackPlugin({
       rel: 'preload',
       as: 'script',
-      include: ['inline', 'vendor', 'main']
+      include: ['vendor', 'main']
     }),
     new BaseHrefWebpackPlugin({}),
     new CommonsChunkPlugin({
@@ -289,7 +292,7 @@ module.exports = {
         "context": ""
       }
     }),
-    new SuppressExtractedTextChunksWebpackPlugin(),
+    // new SuppressExtractedTextChunksWebpackPlugin(),
     new DefinePlugin({
       "process.env.NODE_ENV": "\"production\""
     }),
