@@ -233,7 +233,7 @@ module.exports = {
         }
     }
   }),
-    new HtmlWebpackInlineSourcePlugin(),
+
     new PreloadWebpackPlugin({
       rel: 'preload',
       as: 'script',
@@ -285,7 +285,8 @@ module.exports = {
         "context": ""
       }
     }),
-    // new SuppressExtractedTextChunksWebpackPlugin(),
+    new SuppressExtractedTextChunksWebpackPlugin(),
+    new HtmlWebpackInlineSourcePlugin(),
     new DefinePlugin({
       "process.env.NODE_ENV": "\"production\""
     }),
