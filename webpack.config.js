@@ -24,6 +24,7 @@ const deployUrl = "";
 module.exports = {
   "devtool": false,
   "resolve": {
+    "mainFields": ['es2015', 'jsnext:main', 'browser', 'main'],
     "extensions": [
       ".ts",
       ".js"
@@ -306,7 +307,8 @@ module.exports = {
         "screw_ie8": true,
         "warnings": false
       },
-      "sourceMap": false
+      "sourceMap": true,
+      "comments": false
     }),
     new StyleExtHtmlWebpackPlugin(),
     new AotPlugin({
